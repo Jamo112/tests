@@ -1,7 +1,7 @@
 #ifndef GRIDITEM_HPP
 #define GRIDITEM_HPP
 
-#include <utility>  // for std::pair
+#include <utility> 
 
 class GridItem {
 protected:
