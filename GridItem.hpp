@@ -1,34 +1,39 @@
 #ifndef GRIDITEM_HPP
 #define GRIDITEM_HPP
 
-#include <tuple>  // We use std::tuple to represent positions (x, y)
+#include <utility>  // for std::pair
 
 class GridItem {
 protected:
-    std::tuple<int, int> coordinates; // Stores the (x, y) position.
-    int width; 
+    std::pair<int, int> coordinates;  // Store (x, y) coordinates
+    int width;
     int height;
-    static int gridItems;  // Static to track the number of GridItem instances
+    static int gridItems;  // Static counter for active GridItem instances
 
 public:
-    // Default constructor
-    GridItem() : coordinates(std::make_tuple(0, 0)), width(0), height(0) {
+    // Default constructor initializes everything to zero
+    GridItem() : coordinates({0, 0}), width(0), height(0) {
         gridItems++;
     }
 
-    // Constructor to initialize position and dimensions of the game entity.
+    // Parameterized constructor to set coordinates, width, and height
     GridItem(int x, int y, int width, int height) 
-        : coordinates(std::make_tuple(x, y)), width(width), height(height) {
+        : coordinates({x, y}), width(width), height(height) {
         gridItems++;
     }
 
-    // Destructor
+    // Destructor decrements the static count
     virtual ~GridItem() {
         gridItems--;
     }
 
-    // Getter function to return the current position of the entity.
-    std::tuple<int, int> getPos() const {
+    // Setter for coordinates
+    void setCoordinates(int x, int y) {
+        coordinates = std::make_pair(x, y);
+    }
+
+    // Getter for coordinates
+    std::pair<int, int> getCoordinates() const {
         return coordinates;
     }
 
@@ -42,27 +47,13 @@ public:
         return height;
     }
 
-    // Returns the number of active GridItem instances
+    // Static function to get the number of active GridItem objects
     static int getActiveGridItemCount() {
         return gridItems;
     }
-
-    // Setter function to change the position of the entity.
-    void setCoordinates(int x, int y) {
-        coordinates = std::make_tuple(x, y);
-    }
-
-    // Additional functions to access x and y coordinates individually
-    int getX() const {
-        return std::get<0>(coordinates);
-    }
-
-    int getY() const {
-        return std::get<1>(coordinates);
-    }
 };
 
-// Initialize the static member variable
+// Initialize the static counter
 int GridItem::gridItems = 0;
 
 #endif
