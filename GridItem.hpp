@@ -28,7 +28,7 @@ public:
     }
 
     // Getter function to return the current position of the entity.
-    std::tuple<int, int> getCoordinates() const {
+    std::tuple<int, int> getPos() const {
         return coordinates;
     }
 
@@ -50,6 +50,15 @@ public:
     // Setter function to change the position of the entity.
     void setCoordinates(int x, int y) {
         coordinates = std::make_tuple(x, y);
+    }
+
+    // Additional functions to access x and y coordinates individually
+    int getX() const {
+        return std::get<0>(coordinates);
+    }
+
+    int getY() const {
+        return std::get<1>(coordinates);
     }
 };
 
