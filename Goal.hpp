@@ -12,10 +12,9 @@ public:
 
     // Defines the interaction with the scientist
     bool interact(Scientist* player) override {
-        // Calculate the Manhattan distance between the scientist and goal
         int distance = Helper::manhattanDistance(getCoordinates(), player->getCoordinates());
 
-        // Return true if distance is 0 and the scientist has completed at least 1 experiment
+        // Return true if distance is 0 and the scientist has completed at least 1
         if (distance == 0 && player->getExperimentCount() >= 1) {
             return true;
         }
