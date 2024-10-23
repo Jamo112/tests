@@ -8,41 +8,52 @@ protected:
     std::tuple<int, int> coordinates; // Stores the (x, y) position.
     int width; 
     int height;
-    int gridItems;
+    static int gridItems;  // Static to track the number of GridItem instances
+
 public:
-    // Constructor to initialize position and type of the game entity.
-    GridItem(int x, int y, int width, int height) : GridItem() {
-            gridItems++;
-        }
-    
-    GridItem();
+    // Default constructor
+    GridItem() : coordinates(std::make_tuple(0, 0)), width(0), height(0) {
+        gridItems++;
+    }
+
+    // Constructor to initialize position and dimensions of the game entity.
+    GridItem(int x, int y, int width, int height) 
+        : coordinates(std::make_tuple(x, y)), width(width), height(height) {
+        gridItems++;
+    }
+
+    // Destructor
+    virtual ~GridItem() {
+        gridItems--;
+    }
 
     // Getter function to return the current position of the entity.
     std::tuple<int, int> getCoordinates() const {
         return coordinates;
     }
 
-    virtual ~GridItem() {
-        gridItems=gridItems-1;
-    }
-
-    int getGridWidth(){
+    // Getter for grid width
+    int getGridWidth() const {
         return width;
     }
 
-    int getGridHeight(){
+    // Getter for grid height
+    int getGridHeight() const {
         return height;
-
     }
 
-    int getActiveGridItemCount(){
+    // Returns the number of active GridItem instances
+    static int getActiveGridItemCount() {
         return gridItems;
     }
+
     // Setter function to change the position of the entity.
     void setCoordinates(int x, int y) {
         coordinates = std::make_tuple(x, y);
     }
-
 };
+
+// Initialize the static member variable
+int GridItem::gridItems = 0;
 
 #endif
