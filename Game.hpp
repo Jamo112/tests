@@ -29,8 +29,8 @@ private:
 public:
     Game(int w, int h, std::vector<std::pair<int, int>> experiments) 
         : width(w), height(h), experimentCoordinates(experiments), scientistPosition(0, 0), goalPosition(w - 1, h - 1), state(PLAYING) {
-        // Ensure experiments are not placed on (0,0) or (width-1, height-1)
     }
+
 
     // Display the current game state
     bool displayState() {
