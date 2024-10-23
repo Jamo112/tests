@@ -11,10 +11,11 @@ protected:
     int gridItems;
 public:
     // Constructor to initialize position and type of the game entity.
-    GridItem(int x, int y, int width, int height) :
-        coordinates(std::make_tuple(x, y)) {
+    GridItem(int x, int y, int width, int height) : GridItem() {
             gridItems++;
         }
+    
+    GridItem();
 
     // Getter function to return the current position of the entity.
     std::tuple<int, int> getPos() const {
