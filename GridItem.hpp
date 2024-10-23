@@ -18,7 +18,7 @@ public:
     GridItem();
 
     // Getter function to return the current position of the entity.
-    std::tuple<int, int> getPos() const {
+    std::tuple<int, int> getCoordinates() const {
         return coordinates;
     }
 
